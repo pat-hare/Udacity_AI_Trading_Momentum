@@ -20,5 +20,8 @@ def date_top_industries(prices, sector, date, top_n):
     top_industries : set
         Top industries for the date
     """
+    top_index = prices.loc[date].nlargest(top_n).index
+    top_index = sector.loc[prices.loc[date].nlargest(top_n).index]
     
-    return set(sector.loc[prices.loc[date].nlargest(top_n).index])
+    top_performers = set(top_index)
+    return top_performers
